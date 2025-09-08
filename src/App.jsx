@@ -23,13 +23,10 @@ function App() {
         <Wrapper>
           <h1>Profile App</h1>
         </Wrapper>
-        <div className="section">
-          <div className="container">
+        <Wrapper>
              <About />
-          </div>
-        </div>
-        <div className="section">
-          <div className="container">
+        </Wrapper>
+        <Wrapper>
              <div className="flex-container">
               {
                 profiles.map((profile) => (
@@ -37,8 +34,7 @@ function App() {
                 ))
               }   
               </div>
-          </div>
-        </div>
+        </Wrapper>
       </main>
            
     </>
