@@ -13,6 +13,7 @@ function App() {
     {name: "John Doe", title: "Software Engineer", email: "john@example.com", img: img1},
     {name: "Jane Smith", title: "Product Manager", email: "jane@example.com", img: img2}
   ]
+
   return (
     <>
       <header>

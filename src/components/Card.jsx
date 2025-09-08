@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const Card = ({name, title, email, img}) => {
-   
+
   return (
     <div className="profile-card">``
       <div className="profile-card__image">
@@ -19,7 +19,7 @@ const Card = ({name, title, email, img}) => {
 };
 
 Card.propTypes ={
-    name: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired
