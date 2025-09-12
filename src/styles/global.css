@@ -224,4 +224,6 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  margin: 0 -0.75rem;
+  justify-content: space-between;
 }
