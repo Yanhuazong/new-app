@@ -1,6 +1,5 @@
 import "./App.css";
-import Card1 from "./components/Card1";
-import Card2 from "./components/Card2";
+
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Card from "./components/Card";
@@ -46,7 +45,10 @@ function App() {
   const titles = [...new Set(profiles.map(profile => profile.title))]
   const [title, setTitle] = useState("")
   const [search, setSearch] = useState("")
-  
+  const [mode, setMode] = useState("light")
+  const changeMode = () => {
+    setMode(mode==="dark"?"light":"dark")
+  }
   const handleChange = (event) => {
     setTitle(event.target.value)
   }
@@ -64,9 +66,9 @@ function App() {
   return (
     <>
       <header>
-        <Navbar />
+        <Navbar mode={mode} changeMode={changeMode} />
       </header>
-      <main>
+      <main className={mode}>
         <Wrapper id="header">
           <h1>Profile App</h1>
         </Wrapper>

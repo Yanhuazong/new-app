@@ -1,6 +1,6 @@
 import "../styles/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({mode, changeMode}) => {
     return (
         <nav className="navbar section">
             <ul>
@@ -14,6 +14,7 @@ const Navbar = () => {
                     <a href="#profiles">Profiles</a>
                 </li>
             </ul>
+            <button onClick={changeMode}>{mode==="dark"?"Dark Mode":"Light Mode"}</button>
         </nav>
     );
 }
