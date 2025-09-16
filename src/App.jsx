@@ -8,6 +8,8 @@ import Filters from "./components/Filters";
 import img1 from "./assets/headshot-man.png";
 import img2 from "./assets/headshot-woman.png";
 import { useState } from "react";
+import AddProfile from "./components/AddProfile";
+
 
 function App() {
   const profiles = [
@@ -42,10 +44,12 @@ function App() {
       img: img2,
     },
   ];
+
   const titles = [...new Set(profiles.map(profile => profile.title))]
   const [title, setTitle] = useState("")
   const [search, setSearch] = useState("")
   const [mode, setMode] = useState("light")
+
   const changeMode = () => {
     setMode(mode==="dark"?"light":"dark")
   }
@@ -74,6 +78,9 @@ function App() {
         </Wrapper>
         <Wrapper id="about">
           <About />
+        </Wrapper>
+        <Wrapper id="add-profile">
+          <AddProfile/>
         </Wrapper>
         <Wrapper id="profiles">
           <Filters titles={titles} onChange={handleChange} onSearch={handleSearch} click={handleClick} title={title} search={search}/>
