@@ -9,63 +9,67 @@ import img1 from "./assets/headshot-man.png";
 import img2 from "./assets/headshot-woman.png";
 import { useState } from "react";
 import AddProfile from "./components/AddProfile";
-
+const initialprofiles = [
+  {
+    name: "John Doe",
+    title: "Software Engineer",
+    email: "john@example.com",
+    img: img1,
+  },
+  {
+    name: "Jane Smith",
+    title: "Product Manager",
+    email: "jane@example.com",
+    img: img2,
+  },
+  {
+    name: "Bob Smith",
+    title: "UX Designer",
+    email: "c@example.com",
+    img: img2,
+  },
+  {
+    name: "React Smith",
+    title: "UX Designer",
+    email: "a@example.com",
+    img: img2,
+  },
+  {
+    name: "Ava Doe",
+    title: "Software Engineer",
+    email: "b@example.com",
+    img: img2,
+  },
+];
 
 function App() {
-  const profiles = [
-    {
-      name: "John Doe",
-      title: "Software Engineer",
-      email: "john@example.com",
-      img: img1,
-    },
-    {
-      name: "Jane Smith",
-      title: "Product Manager",
-      email: "jane@example.com",
-      img: img2,
-    },
-    {
-      name: "Bob Smith",
-      title: "UX Designer",
-      email: "c@example.com",
-      img: img2,
-    },
-    {
-      name: "React Smith",
-      title: "UX Designer",
-      email: "a@example.com",
-      img: img2,
-    },
-    {
-      name: "Ava Doe",
-      title: "Software Engineer",
-      email: "b@example.com",
-      img: img2,
-    },
-  ];
+  const [profiles, setProfiles] = useState(initialprofiles);
+  const titles = [...new Set(profiles.map((profile) => profile.title))];
+  const [title, setTitle] = useState("");
+  const [search, setSearch] = useState("");
+  const [mode, setMode] = useState("light");
 
-  const titles = [...new Set(profiles.map(profile => profile.title))]
-  const [title, setTitle] = useState("")
-  const [search, setSearch] = useState("")
-  const [mode, setMode] = useState("light")
-
+  const addProfiles = (profile) => {
+    setProfiles(prev => [...prev, profile])
+  }
   const changeMode = () => {
-    setMode(mode==="dark"?"light":"dark")
-  }
+    setMode(mode === "dark" ? "light" : "dark");
+  };
   const handleChange = (event) => {
-    setTitle(event.target.value)
-  }
+    setTitle(event.target.value);
+  };
   const handleSearch = (event) => {
-    setSearch(event.target.value)
-  }
+    setSearch(event.target.value);
+  };
   const handleClick = () => {
-    setTitle("")
-    setSearch("")
-  }
-  const filteredProfiles = profiles.filter(profile => 
-    (!title || profile.title===title) && profile.name.toLowerCase().includes(search.toLowerCase())
-  )
+    setTitle("");
+    setSearch("");
+  };
+  const filteredProfiles = profiles.filter(
+    (profile) =>
+      (!title || profile.title === title) &&
+      profile.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <>
@@ -80,10 +84,17 @@ function App() {
           <About />
         </Wrapper>
         <Wrapper id="add-profile">
-          <AddProfile/>
+          <AddProfile addProfiles={addProfiles} />
         </Wrapper>
         <Wrapper id="profiles">
-          <Filters titles={titles} onChange={handleChange} onSearch={handleSearch} click={handleClick} title={title} search={search}/>
+          <Filters
+            titles={titles}
+            onChange={handleChange}
+            onSearch={handleSearch}
+            click={handleClick}
+            title={title}
+            search={search}
+          />
           <div className="flex-container">
             {filteredProfiles.map((profile) => (
               <Card
