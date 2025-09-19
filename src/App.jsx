@@ -1,5 +1,4 @@
 import "./App.css";
-
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Card from "./components/Card";
@@ -9,6 +8,8 @@ import img1 from "./assets/headshot-man.png";
 import img2 from "./assets/headshot-woman.png";
 import { useState } from "react";
 import AddProfile from "./components/AddProfile";
+import FetchedProfiles from "./components/FetchedProfiles"
+
 const initialprofiles = [
   {
     name: "John Doe",
@@ -107,6 +108,9 @@ function App() {
             ))}
           </div>
         </Wrapper>
+          <Wrapper>
+            <FetchedProfiles />
+          </Wrapper>
       </main>
     </>
   );
