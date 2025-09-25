@@ -1,14 +1,12 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import About from "./components/About";
-import Card from "./components/Card";
-import Wrapper from "./components/Wrapper";
-import Filters from "./components/Filters";
+import { useState } from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import AddProfilePage from "./pages/AddProfilePage";
 import img1 from "./assets/headshot-man.png";
 import img2 from "./assets/headshot-woman.png";
-import { useState } from "react";
-import AddProfile from "./components/AddProfile";
-import FetchedProfiles from "./components/FetchedProfiles"
 
 const initialprofiles = [
   {
@@ -42,77 +40,28 @@ const initialprofiles = [
     img: img2,
   },
 ];
-
 function App() {
-  const [profiles, setProfiles] = useState(initialprofiles);
-  const titles = [...new Set(profiles.map((profile) => profile.title))];
-  const [title, setTitle] = useState("");
-  const [search, setSearch] = useState("");
   const [mode, setMode] = useState("light");
-
-  const addProfiles = (profile) => {
-    setProfiles(prev => [...prev, profile])
-  }
+  const [profiles, setProfiles] = useState(initialprofiles);
   const changeMode = () => {
     setMode(mode === "dark" ? "light" : "dark");
   };
-  const handleChange = (event) => {
-    setTitle(event.target.value);
+  const addProfiles = (profile) => {
+    setProfiles((prev) => [...prev, profile]);
   };
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-  };
-  const handleClick = () => {
-    setTitle("");
-    setSearch("");
-  };
-  const filteredProfiles = profiles.filter(
-    (profile) =>
-      (!title || profile.title === title) &&
-      profile.name.toLowerCase().includes(search.toLowerCase())
-  );
-
   return (
-    <>
+    <HashRouter>
       <header>
         <Navbar mode={mode} changeMode={changeMode} />
       </header>
       <main className={mode}>
-        <Wrapper id="header">
-          <h1>Profile App</h1>
-        </Wrapper>
-        <Wrapper id="about">
-          <About />
-        </Wrapper>
-        <Wrapper id="add-profile">
-          <AddProfile addProfiles={addProfiles} />
-        </Wrapper>
-        <Wrapper id="profiles">
-          <Filters
-            titles={titles}
-            onChange={handleChange}
-            onSearch={handleSearch}
-            click={handleClick}
-            title={title}
-            search={search}
-          />
-          <div className="flex-container">
-            {filteredProfiles.map((profile) => (
-              <Card
-                key={profile.email}
-                name={profile.name}
-                title={profile.title}
-                email={profile.email}
-                img={profile.img}
-              />
-            ))}
-          </div>
-        </Wrapper>
-          <Wrapper>
-            <FetchedProfiles />
-          </Wrapper>
+        <Routes>
+          <Route path="/" element={<HomePage profiles={profiles} />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/add-profile" element={<AddProfilePage addProfiles={addProfiles} />} />
+        </Routes>
       </main>
-    </>
+    </HashRouter>
   );
 }
 

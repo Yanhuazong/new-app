@@ -1,17 +1,18 @@
 import "../styles/Navbar.css";
+import {Link} from "react-router-dom"
 
 const Navbar = ({mode, changeMode}) => {
     return (
         <nav className="navbar section">
             <ul>
                 <li>
-                    <a href="#">Home</a>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <a href="#about">About</a>
+                    <Link to="/about">About</Link>
                 </li>
                 <li>
-                    <a href="#profiles">Profiles</a>
+                    <Link to="/add-profile">Profiles</Link>
                 </li>
             </ul>
             <button onClick={changeMode}>{mode==="dark"?"Dark Mode":"Light Mode"}</button>

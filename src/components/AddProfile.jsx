@@ -61,7 +61,6 @@ const AddProfile = ({ addProfiles }) => {
   };
   return (
     <div className="add-profile">
-      <h2>Add Profile</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
