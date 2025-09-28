@@ -12,7 +12,10 @@ const Navbar = ({mode, changeMode}) => {
                     <Link to="/about">About</Link>
                 </li>
                 <li>
-                    <Link to="/add-profile">Profiles</Link>
+                    <Link to="/add-profile">Add a Profile</Link>
+                </li>
+                <li>
+                    <Link to="/fetched-profiles">Fetched Profiles</Link>
                 </li>
             </ul>
             <button onClick={changeMode}>{mode==="dark"?"Dark Mode":"Light Mode"}</button>

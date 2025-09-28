@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "../styles/addProfile.css";
+import { useNavigate } from "react-router-dom"
+
 const stripTags = (s) => String(s ?? "").replace(/<\/?[^>]+>/g, "");
 const trimCollapse = (s) =>
   String(s ?? "")
@@ -18,6 +20,8 @@ const AddProfile = ({ addProfiles }) => {
   const [errors, setErrors] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate()
+
   const onChange = (event) => {
     if (event.target.name === "img") {
       const file = event.target.files[0];
@@ -53,6 +57,7 @@ const AddProfile = ({ addProfiles }) => {
         setSuccess("");
       }, 1000);
       event.currentTarget.reset();
+      navigate("/")
     } catch (error) {
       setErrors("Songthing is wrong.")
     } finally {

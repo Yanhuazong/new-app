@@ -11,7 +11,7 @@ const Card = ({name, title, email, img}) => {
         <p>{name}</p>
         <p>{title}</p>
         <p>
-          <a href={`mailto:${email}`}>{email}</a>
+          {email}
         </p>
       </div>
     </div>

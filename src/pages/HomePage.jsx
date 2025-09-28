@@ -52,10 +52,6 @@ const HomePage = ({ profiles }) => {
           ))}
         </div>
       </Wrapper>
-      <Wrapper>
-        <h2>Fetched Profiles</h2>
-        <FetchedProfiles />
-      </Wrapper>
     </>
   );
 };

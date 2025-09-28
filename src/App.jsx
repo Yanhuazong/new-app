@@ -5,8 +5,12 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import AddProfilePage from "./pages/AddProfilePage";
+import NotFound from "./pages/NotFound";
 import img1 from "./assets/headshot-man.png";
 import img2 from "./assets/headshot-woman.png";
+import FetchedProfilesPage from "./pages/FetchedProfilesPage";
+import ProfileDetails from "./pages/ProfileDetails";
+import ProfilesLayout from "./pages/ProfilesLayout";
 
 const initialprofiles = [
   {
@@ -59,6 +63,11 @@ function App() {
           <Route path="/" element={<HomePage profiles={profiles} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/add-profile" element={<AddProfilePage addProfiles={addProfiles} />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/fetched-profiles" element={<ProfilesLayout />}>
+            <Route index element={<FetchedProfilesPage />} />
+            <Route path="profile/:id" element={<ProfileDetails />} />
+          </Route>
         </Routes>
       </main>
     </HashRouter>
