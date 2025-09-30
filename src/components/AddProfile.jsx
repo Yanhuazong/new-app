@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../styles/addProfile.css";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import ProfilesContext from "../contexts/ProfilesContext"
 
 const stripTags = (s) => String(s ?? "").replace(/<\/?[^>]+>/g, "");
 const trimCollapse = (s) =>
@@ -14,13 +15,15 @@ const initialValues = {
   bio: "",
   img: null,
 };
-const AddProfile = ({ addProfiles }) => {
+const AddProfile = () => {
   const [values, setValues] = useState(initialValues);
   const { name, title, email, bio, img } = values;
   const [errors, setErrors] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState("");
   const navigate = useNavigate()
+
+  const { addProfiles } = useContext(ProfilesContext)
 
   const onChange = (event) => {
     if (event.target.name === "img") {

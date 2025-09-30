@@ -2,9 +2,12 @@ import Wrapper from "../components/Wrapper";
 import Filters from "../components/Filters";
 import Card from "../components/Card";
 import FetchedProfiles from "../components/FetchedProfiles";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import ProfilesContext from "../contexts/ProfilesContext"
 
-const HomePage = ({ profiles }) => {
+const HomePage = () => {
+
+  const {profiles} = useContext(ProfilesContext)
   const titles = [...new Set(profiles.map((profile) => profile.title))];
   const [title, setTitle] = useState("");
   const [search, setSearch] = useState("");
