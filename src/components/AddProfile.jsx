@@ -29,7 +29,7 @@ const AddProfile = () => {
   const navigate = useNavigate()
 
   const nameRef = useRef(null)
-  useLayoutEffect(()=>{
+  useEffect(()=>{
     console.log(nameRef)
     nameRef.current.focus();
   }, [])
@@ -38,27 +38,15 @@ const AddProfile = () => {
   const onChange = (event) => {
     if (event.target.name === "img") {
       const file = event.target.files[0];
-      // if (file && file.size < 1024 * 1024) {
-      //    setErrors("");
-      //   setValues((prev) => ({ ...prev, img: file }));
-      // } else {
-      //   setErrors("File needs to be less than 1MB.");
-      //   setValues((prev) => ({ ...prev, img: null }));
-      // }
       const isFileOK = file && file.size < 1024 * 1024
       dispatch({type: "SET_IMG", payload:isFileOK ? file : null})
     } else {
-      // setValues((prev) => ({
-      //   ...prev,
-      //   [event.target.name]: event.target.value,
-      // }));
       const {name, value} = event.target;
       dispatch({type:"SET_VALUES", payload: {name, value}})
     }
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    // setIsSubmitting(true);
     dispatch({type: "START_SUBMITTING"})
     try {
       const cleanedValues = {
@@ -69,20 +57,15 @@ const AddProfile = () => {
         img: URL.createObjectURL(img),
       };
       addProfiles(cleanedValues);
-      // setSuccess("Form has been submitted successfully.");
-      // setValues(initialValues);
       dispatch({type: "SUBMIT_SUCCESS" })
       setTimeout(() => {
-        // setSuccess("");
         dispatch({type: "CLEAR_SUCCESS"})
       }, 1000);
       event.currentTarget.reset();
       navigate("/")
     } catch (error) {
-      // setErrors("Something is wrong.")
       dispatch({type: "HAS_ERROR"})
     } finally {
-      // setIsSubmitting(false);
       dispatch({type: "FINISH_SUBMIT"})
     }
   };

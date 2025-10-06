@@ -9,18 +9,15 @@ import NotFound from "./pages/NotFound";
 import FetchedProfilesPage from "./pages/FetchedProfilesPage";
 import ProfileDetails from "./pages/ProfileDetails";
 import ProfilesLayout from "./pages/ProfilesLayout";
+import ModeContext from "./contexts/ModeContext";
 
 
 function App() {
-  const [mode, setMode] = useState("light");
-  const changeMode = () => {
-    setMode(mode === "dark" ? "light" : "dark");
-  };
-
+  const {mode} = useContext(ModeContext)
   return (
     <HashRouter>
       <header>
-        <Navbar mode={mode} changeMode={changeMode} />
+        <Navbar/>
       </header>
       <main className={mode}>
         <Routes>
